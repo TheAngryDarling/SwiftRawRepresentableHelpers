@@ -71,7 +71,26 @@ public extension XMLNode {
         return XMLNode.attribute(withName: name.rawValue, stringValue: stringValue) as! XMLNode
     }
     
+    /// Returns an NSXMLNode object representing an attribute node with a given name and string.
+    ///
+    /// - Parameters:
+    ///   - name: The string that is the name of an attribute.
+    ///   - stringValue: A raw representable string that is the value of an attribute.
+    /// - Returns: Returns an attribute <tt>name="stringValue"</tt>.
+    public class func attribute<R>(withName name: String, stringValue: R) -> XMLNode where R: RawRepresentable, R.RawValue == String {
+        return XMLNode.attribute(withName: name, stringValue: stringValue.rawValue) as! XMLNode
+    }
     
+    /// Returns an NSXMLNode object representing an attribute node with a given name and string.
+    ///
+    /// - Parameters:
+    ///   - name: The raw representable string that is the name of an attribute.
+    ///   - stringValue: A raw representable string that is the value of an attribute.
+    /// - Returns: Returns an attribute <tt>name="stringValue"</tt>.
+    public class func attribute<R1, R2>(withName name: R1, stringValue: R2) -> XMLNode where R1: RawRepresentable, R1.RawValue == String, R2: RawRepresentable, R2.RawValue == String {
+        return XMLNode.attribute(withName: name.rawValue,
+                                 stringValue: stringValue.rawValue) as! XMLNode
+    }
     
     /// Returns an NSXMLNode object representing an attribute node with a given qualified name and string.
     ///
@@ -86,5 +105,35 @@ public extension XMLNode {
         return XMLNode.attribute(withName: name.rawValue,
                                  uri: URI,
                                  stringValue: stringValue) as! XMLNode
+    }
+    
+    /// Returns an NSXMLNode object representing an attribute node with a given qualified name and string.
+    ///
+    /// - Parameters:
+    ///   - name: The string that is the name of an attribute.
+    ///   - URI: A URI (Universal Resource Identifier) that qualifies name.
+    ///   - stringValue: A raw representable string that is the value of the attribute.
+    /// - Returns: Returns an attribute whose full QName is specified.
+    public class func attribute<R>(withName name: String,
+                                   uri URI: String,
+                                   stringValue: R) -> XMLNode where R: RawRepresentable, R.RawValue == String {
+        return XMLNode.attribute(withName: name,
+                                 uri: URI,
+                                 stringValue: stringValue.rawValue) as! XMLNode
+    }
+    
+    /// Returns an NSXMLNode object representing an attribute node with a given qualified name and string.
+    ///
+    /// - Parameters:
+    ///   - name: The raw representable string that is the name of an attribute.
+    ///   - URI: A URI (Universal Resource Identifier) that qualifies name.
+    ///   - stringValue: A raw representable string that is the value of the attribute.
+    /// - Returns: Returns an attribute whose full QName is specified.
+    public class func attribute<R1, R2>(withName name: R1,
+                                   uri URI: String,
+                                   stringValue: R2) -> XMLNode where R1: RawRepresentable, R1.RawValue == String, R2: RawRepresentable, R2.RawValue == String {
+        return XMLNode.attribute(withName: name.rawValue,
+                                 uri: URI,
+                                 stringValue: stringValue.rawValue) as! XMLNode
     }
 }
