@@ -180,7 +180,11 @@ import Foundation
 
 public extension Collection where Element: Equatable {
     func index<R>(of element: R) -> Index? where R: RawRepresentable, R.RawValue == Element {
+        #if swift(>=5.1)
+        return self.firstIndex(where: { return $0 == element.rawValue})
+        #else
         return self.index(where: { return $0 == element.rawValue})
+        #endif
     }
     /// Returns a Boolean value indicating whether the sequence contains the
     /// given element.
