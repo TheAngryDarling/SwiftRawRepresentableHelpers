@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if swift(>=4.1)
+    #if canImport(FoundationXML)
+        import FoundationXML
+    #endif
+#endif
 
 public extension XMLNode {
     /// Returns an XMLElement object with a given tag identifier, or name
